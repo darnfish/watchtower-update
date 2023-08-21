@@ -11,13 +11,13 @@ async function run(): Promise<void> {
     // Get variables from input
     let url = core.getInput('url')
     const apiToken = core.getInput('api_token')
-    
+
     const images = core.getInput('images') as unknown as string[]
     const headers = core.getInput('headers') as unknown as Headers
 
     // Construct URL with image list if exists
-    if(images?.length > 0) {
-      const query = qs.stringify({ image: images.join(',') })    
+    if (images?.length > 0) {
+      const query = qs.stringify({image: images.join(',')})
 
       url = [url, '?', query].join('')
     }
