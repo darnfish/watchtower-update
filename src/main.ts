@@ -9,17 +9,19 @@ type Headers = {
 async function run(): Promise<void> {
   try {
     // Get variables from input
-    let url = core.getInput('url')
     const apiToken = core.getInput('api_token')
 
-    let images = core.getInput('images')
-    let headers = core.getInput('headers')
+    let url = core.getInput('url')
 
-    if(images)
-      images = images.split(',')
+    let images: string[]
+    let headers: Headers
 
-    if(headers)
-      headers = JSON.parse(headers)
+    let _images = core.getInput('images')
+    let _headers = core.getInput('headers')
+
+    if (_images) images = _images.split(',')
+
+    if (_headers) headers = JSON.parse(_headers)
 
     // Construct URL with image list if exists
     if (images?.length > 0) {

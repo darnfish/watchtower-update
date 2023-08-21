@@ -48,10 +48,16 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             // Get variables from input
-            let url = core.getInput('url');
             const apiToken = core.getInput('api_token');
-            const images = core.getInput('images');
-            const headers = core.getInput('headers');
+            let url = core.getInput('url');
+            let images;
+            let headers;
+            let _images = core.getInput('images');
+            let _headers = core.getInput('headers');
+            if (_images)
+                images = _images.split(',');
+            if (_headers)
+                headers = JSON.parse(_headers);
             // Construct URL with image list if exists
             if ((images === null || images === void 0 ? void 0 : images.length) > 0) {
                 const query = qs_1.default.stringify({ image: images.join(',') });
