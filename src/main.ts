@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 
 import qs from 'qs'
+import axios from 'axios'
 
 type Headers = {
   [key in string]: string
@@ -31,7 +32,7 @@ async function run(): Promise<void> {
     }
 
     // Send request
-    await fetch(url, {
+    await axios.get(url, {
       headers: {
         Authorization: `Bearer ${apiToken}`,
         ...(headers || {})
