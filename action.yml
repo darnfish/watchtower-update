@@ -1,6 +1,8 @@
 name: 'Watchtower Update'
 description: 'Provide a description here'
 author: 'darnfish'
+icon: 'arrow-down-circle'
+color: 'blue'
 inputs:
   url:
     required: true
