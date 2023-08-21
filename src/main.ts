@@ -12,8 +12,14 @@ async function run(): Promise<void> {
     let url = core.getInput('url')
     const apiToken = core.getInput('api_token')
 
-    const images = core.getInput('images') as unknown as string[]
-    const headers = core.getInput('headers') as unknown as Headers
+    let images = core.getInput('images')
+    let headers = core.getInput('headers')
+
+    if(images)
+      images = images.split(',')
+
+    if(headers)
+      headers = JSON.parse(headers)
 
     // Construct URL with image list if exists
     if (images?.length > 0) {
