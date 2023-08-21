@@ -1,16 +1,34 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+
+import qs from 'qs'
+
+type Headers = {
+  [key in string]: string
+}
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    // Get variables from input
+    let url = core.getInput('url')
+    const apiToken = core.getInput('api_token')
+    
+    const images = core.getInput('images') as unknown as string[]
+    const headers = core.getInput('headers') as unknown as Headers
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    // Construct URL with image list if exists
+    if(images?.length > 0) {
+      const query = qs.stringify({ image: images.join(',') })    
 
-    core.setOutput('time', new Date().toTimeString())
+      url = [url, '?', query].join('')
+    }
+
+    // Send request
+    await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+        ...(headers || {})
+      }
+    })
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

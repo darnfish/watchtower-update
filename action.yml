@@ -1,11 +1,19 @@
-name: 'Your name here'
+name: 'Watchtower Update'
 description: 'Provide a description here'
-author: 'Your name or organization here'
+author: 'darnfish'
 inputs:
-  milliseconds: # change this
+  url:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'The URL of your Watchtower HTTP endpoint'
+  api_token:
+    required: true
+    description: 'The API token of your Watchtower HTTP endpoint'
+  images:
+    required: false
+    description: "A list of Docker images that you want to update"
+  headers:
+    required: false
+    description: "Additional HTTP headers to be sent alongside the request"
 runs:
   using: 'node16'
   main: 'dist/index.js'
