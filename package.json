@@ -2,7 +2,7 @@
   "name": "watchtower-action",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "Automate your Docker image deployments on GitHub Actions via Watchtower's HTTP API",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",

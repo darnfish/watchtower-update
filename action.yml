@@ -1,5 +1,5 @@
 name: 'Watchtower Update'
-description: 'Provide a description here'
+description: 'Automate your Docker image deployments on GitHub Actions via Watchtower'
 author: 'darnfish'
 branding:
   icon: 'arrow-down-circle'
